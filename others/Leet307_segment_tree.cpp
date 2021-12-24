@@ -1,3 +1,8 @@
+#include <cstdio>
+#include <vector>
+
+using namespace std;
+
 class NumArray {
 public:
     class Node {
@@ -14,6 +19,12 @@ public:
         int he;
         Node* left;
         Node* right;
+	~Node() {
+	    if (left != nullptr)
+	        delete left;
+	    if (right != nullptr)
+		delete right;
+	}
     };
     Node* root;
     NumArray(vector<int>& nums) {
@@ -65,4 +76,19 @@ public:
         }
         return recur_sum(node->left, left, left_last) + recur_sum(node->right, left_last+1, right);
     }
+    ~NumArray() {
+	delete root;
+    }
 };
+
+int main() {
+    // Test case
+    vector<int> nums = {1, 3, 5};
+    NumArray* s = new NumArray(nums);
+    printf("%d ", s->sumRange(0, 2));
+    s->update(1, 2);
+    printf("%d ", s->sumRange(0, 2));
+    printf("\n");
+    delete s;
+    return 0;
+}
