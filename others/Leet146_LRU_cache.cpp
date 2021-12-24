@@ -1,7 +1,12 @@
+#include <cstdio>
+#include <unordered_map>
+
+using namespace std;
+
 class LRUCache {
 public:
     unordered_map<int, int> m;
-    map<int, void*> addr;  // *addr[key] == address of this node
+    unordered_map<int, void*> addr;  // *addr[key] == address of this node
     int capacity;
     int size = 0;
 
@@ -100,3 +105,20 @@ public:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+ 
+ int main() {
+     // Test case
+     LRUCache* s = new LRUCache(2);
+     s->put(1, 0);
+     s->put(2, 2);
+     printf("%d ", s->get(1));
+     s->put(3, 3);
+     printf("%d ", s->get(2));
+     s->put(4, 4);
+     printf("%d ", s->get(1));
+     printf("%d ", s->get(3));
+     printf("%d ", s->get(4));
+     printf("\n");
+     delete s;
+     return 0;
+ }
