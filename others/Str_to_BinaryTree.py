@@ -39,7 +39,7 @@ class Codec:
         if data == "":
             return None
         data = data.split(',')
-        root = TreeNode(data[0])
+        root = TreeNode(int(data[0]))
         data.pop(0)
         q = [[root, True], [root, False]]
         while len(data) > 0:
